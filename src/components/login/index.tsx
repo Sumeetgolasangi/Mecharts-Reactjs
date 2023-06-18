@@ -50,7 +50,7 @@ const Login = () => {
       </Form>
       <div className="signup">
         <p className="para">New to MeCharts? Please click here for</p>
-        <a href="/signup" className="button">
+        <a href="/signup" className="button" style={{fontSize:"12px"}}>
           Sign-Up
         </a>
       </div>

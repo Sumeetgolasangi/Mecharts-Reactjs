@@ -2,14 +2,16 @@
   margin: auto;
   width: 50vw;
   opacity: 0.9;
-  .para {
-    font-size: 12px;
-    font-family: "Poppins";
-  }
+
   .signup {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .para {
+      font-size: 12px;
+      font-family: "Poppins";
+    }
     .button {
       background-color: white;
       color: blue;

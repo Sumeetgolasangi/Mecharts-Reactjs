@@ -64,7 +64,7 @@ const SignUp = () => {
       </Form>
       <div className="signup">
         <p className="para">already have account in MeCharts? Please click here for</p>
-        <a href="/login" className="button">
+        <a href="/login" className="button" style={{fontSize:"12px"}}>
           Login
         </a>
       </div>
