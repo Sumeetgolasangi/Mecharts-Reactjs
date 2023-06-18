@@ -10,9 +10,9 @@ function Header() {
   const [modal, setModal] = useState<boolean>(false);
 
   const handleChange = (value: String) => {
-    setProfile(value)
-    if(value==='login'){
-      navigate('/login')
+    setProfile(value);
+    if (value === "login") {
+      navigate("/login");
     }
   };
   const handleUploadModal = () => {
