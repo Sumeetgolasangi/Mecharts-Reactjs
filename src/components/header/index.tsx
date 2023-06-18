@@ -21,9 +21,6 @@ function Header() {
   const handleClose = () => {
     setModal(false);
   };
-  const modalObj: any = {
-    open: modal,
-  };
   const handlehomebutton = () =>{
     navigate("/")
   }
