@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import type { UploadProps } from "antd";
-import { Upload ,message} from "antd";
+import { Upload, message, Select } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 const UploadFile = () => {
+  const [modal, setModal] = useState<boolean>(false);
+  const [file, setFile] = useState<String>("");
+  const handleChange = (value: String) => {
+    setFile(value);
+    setModal(true);
+  };
+
   const { Dragger } = Upload;
 
   const props: UploadProps = {
@@ -27,6 +34,7 @@ const UploadFile = () => {
         //     message.error(`${data}`);
         //   }
         console.log(file);
+        setModal(false);
       };
       reader.readAsText(file);
       return false;
@@ -34,17 +42,31 @@ const UploadFile = () => {
   };
   return (
     <>
-      <Dragger {...props} style={{ padding: "10px" }}>
-        <p className="ant-upload-drag-icon" style={{ marginTop: "30px" }}>
-          <InboxOutlined />
-        </p>
-        <p style={{ marginTop: "30px" }}>
-          Click or drag file to this area to upload
-        </p>
-        <p style={{ fontSize: "10px", color: "#777", margin: "10px 0 30px 0" }}>
-          Support for a single upload
-        </p>
-      </Dragger>
+      <Select
+        defaultValue="File Format"
+        onChange={handleChange}
+        bordered={false}
+        className="profile"
+        options={[
+          { value: "excel", label: "Excel" },
+          { value: "csv", label: "CSV" },
+        ]}
+      />
+      {modal && (
+        <Dragger {...props} style={{ padding: "10px" }}>
+          <p className="ant-upload-drag-icon" style={{ marginTop: "30px" }}>
+            <InboxOutlined />
+          </p>
+          <p style={{ marginTop: "30px" }}>
+            Click or drag file to this area to upload
+          </p>
+          <p
+            style={{ fontSize: "10px", color: "#777", margin: "10px 0 30px 0" }}
+          >
+            Support for a single upload
+          </p>
+        </Dragger>
+      )}
     </>
   );
 };
