@@ -15,7 +15,7 @@ const SignUp = () => {
         name="basic"
         labelCol={{ span: 10 }}
         wrapperCol={{ span: 100 }}
-        style={{ maxWidth: 1000 }}
+        style={{ maxWidth: 2000 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}

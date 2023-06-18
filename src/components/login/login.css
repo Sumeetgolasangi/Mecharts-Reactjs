@@ -1,9 +1,9 @@
 .Card {
   margin: auto;
-  width: 80vw;
+  width: 50vw;
   opacity: 0.9;
   .para {
-    font-size: 8px;
+    font-size: 12px;
     font-family: "Poppins";
   }
   .signup {
@@ -14,7 +14,7 @@
       background-color: white;
       color: blue;
       font-family: "Poppins";
-      font-size: 8px;
+      font-size: 12px;
       text-decoration: underline;
       border: 1px solid white;
     }

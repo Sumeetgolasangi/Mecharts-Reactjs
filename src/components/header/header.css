@@ -9,7 +9,7 @@
         .card-maindiv{
             display: flex;
             justify-content: space-between;
-            margin-top: -1%;
+            margin: -6px;
 
             .card-maindiv-right{
                 width: 8vw;
@@ -18,27 +18,30 @@
                 .logo{
                     background-color:  rgb(211, 223, 223);
                     width: 20%;
-                    height: 4vh;
+                    height: 3vh;
                     border-radius: 30%;
                 }
                 .name{
                     font-family: 'Poppina';
                     font-weight: bold;
                     font-style: italic;
+                    font-size: 20px;
                 }
             }
             .card-maindiv-left{
-                width: 15vw;
+                width: 12vw;
                 display: flex;
                 justify-content: space-between;
                 .upload{
                     font-family: 'Poppina';
+                    font-size: 20px;
 
                 }
                 .profile{
                     font-family: 'Poppina';
-                    margin-top: -10%;
-                    width: 80;
+                    /* margin-top: -6%; */
+                    width: 100;
+                    font-size: 20px;
                 }
             }
         }
