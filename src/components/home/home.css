@@ -6,6 +6,7 @@
 
     .home{
         height: 85vh;
+        opacity: 0.9;
     }
     .menu{
         height: 85vh;
@@ -16,4 +17,5 @@
     margin-top: -6%;
     margin-left: -16%;
     font-family: 'Poppina';
+    opacity: 0.9;
 }

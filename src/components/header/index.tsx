@@ -24,15 +24,18 @@ function Header() {
   const modalObj: any = {
     open: modal,
   };
+  const handlehomebutton = () =>{
+    navigate("/")
+  }
   return (
     <div className="header-container">
       <Card className="card-container">
         <div className="card-maindiv">
           <div className="card-maindiv-right">
-            <div className="logo">
+            <div className="logo" onClick={handlehomebutton}>
               <SlackOutlined />
             </div>
-            <div className="name">MeCharts</div>
+            <div className="name" onClick={handlehomebutton}>MeCharts</div>
           </div>
           <div className="card-maindiv-left">
             <div className="upload" onClick={handleUploadModal}>

@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Checkbox, Form, Input, Card } from "antd";
-import "./login.css";
-const Login = () => {
+import { Button, Checkbox, Form, Input, Card ,InputNumber} from "antd";
+import "./signup.css";
+const SignUp = () => {
   const onFinish = (values: any) => {
     console.log("Success:", values);
   };
@@ -29,6 +29,20 @@ const Login = () => {
         >
           <Input />
         </Form.Item>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[{ type: 'email' ,required: true, message: "Please input your username!" }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="PhoneNumber"
+          name="phonenumber"
+          rules={[{ required: true, message: "Please input your username!" }]}
+        >
+          <InputNumber style={{width:"100%"}}/>
+        </Form.Item>
 
         <Form.Item
           label="Password"
@@ -49,12 +63,12 @@ const Login = () => {
         </Form.Item>
       </Form>
       <div className="signup">
-        <p className="para">New to MeCharts? Please click here for</p>
-        <a href="/signup" className="button">
-          Sign-Up
+        <p className="para">already have account in MeCharts? Please click here for</p>
+        <a href="/login" className="button">
+          Login
         </a>
       </div>
     </Card>
   );
 };
-export default Login;
+export default SignUp;
