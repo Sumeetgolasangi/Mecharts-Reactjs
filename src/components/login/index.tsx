@@ -1,13 +1,30 @@
 import React from "react";
-import { Button, Checkbox, Form, Input, Card } from "antd";
+import { Button, Checkbox, Form, Input, Card ,message} from "antd";
 import "./login.css";
 const Login = () => {
+
   const onFinish = (values: any) => {
-    console.log("Success:", values);
+    const email = values.email
+    const password = values.password
+    fetch("http://localhost:8080/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        email,
+        password
+      }),
+    }).then((res) => res.json()).then((data) => {
+      sessionStorage.setItem("data", data.token);
+      sessionStorage.setItem("user", data.data);
+      message.info(data.message)})
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
+    message.error("Failed:", errorInfo);
   };
   return (
     <Card className="Card">
@@ -23,9 +40,9 @@ const Login = () => {
         autoComplete="off"
       >
         <Form.Item
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: "Please input your Email!" }]}
         >
           <Input />
         </Form.Item>

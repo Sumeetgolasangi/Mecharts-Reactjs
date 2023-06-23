@@ -4,27 +4,24 @@ import "./signup.css";
 import {message} from 'antd'
 const SignUp = () => {
   const onFinish = (values: any) => {
-    const id = values.id
     const name = values.name
     const email = values.email
     const password = values.password
     const phonenumber = values.phonenumber
     const passwordhint = values.passwordhint
-    console.log(values)
+    const username = values.username
     fetch("http://localhost:8080/createuser", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        id,
         name,
         email,
         password,
         phonenumber,
-        passwordhint
+        passwordhint,
+        username
       }),
     }).then((res) => res.json()).then((data) => {
       message.info(data.message)})
@@ -56,21 +53,21 @@ const SignUp = () => {
         <Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          rules={[{ required: true, message: "Please input your Username!" }]}
         >
           <Input />
         </Form.Item>
         <Form.Item
           label="Email"
           name="email"
-          rules={[{ type: 'email' ,required: true, message: "Please input your username!" }]}
+          rules={[{ type: 'email' ,required: true, message: "Please input your email!" }]}
         >
           <Input />
         </Form.Item>
         <Form.Item
           label="PhoneNumber"
           name="phonenumber"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          rules={[{ required: true, message: "Please input your PhoneNumber!" }]}
         >
           <InputNumber style={{width:"100%"}}/>
         </Form.Item>
