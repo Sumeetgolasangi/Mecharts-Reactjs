@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import "./header.css";
 import { Card, Select, Modal } from "antd";
 import { SlackOutlined, CloudUploadOutlined } from "@ant-design/icons";
@@ -8,7 +8,7 @@ function Header() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState<String>("");
   const [modal, setModal] = useState<boolean>(false);
-
+  const [users, setUsers] = useState<any>([]);
   const handleChange = (value: String) => {
     setProfile(value);
     if (value === "login") {
@@ -24,6 +24,16 @@ function Header() {
   const handlehomebutton = () =>{
     navigate("/")
   }
+
+  useEffect(()=>{
+    fetch(
+      `${`http://localhost:8080/`}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setUsers(data.data)
+      })
+  },[])
   return (
     <div className="header-container">
       <Card className="card-container">
@@ -40,7 +50,7 @@ function Header() {
             </div>
             <div>
               <Select
-                defaultValue="Sumeet G"
+                defaultValue={users[0]?users[0].name:"user"}
                 onChange={handleChange}
                 bordered={false}
                 className="profile"

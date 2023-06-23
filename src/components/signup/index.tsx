@@ -1,13 +1,37 @@
 import React from "react";
 import { Button, Checkbox, Form, Input, Card ,InputNumber} from "antd";
 import "./signup.css";
+import {message} from 'antd'
 const SignUp = () => {
   const onFinish = (values: any) => {
-    console.log("Success:", values);
+    const id = values.id
+    const name = values.name
+    const email = values.email
+    const password = values.password
+    const phonenumber = values.phonenumber
+    const passwordhint = values.passwordhint
+    console.log(values)
+    fetch("http://localhost:8080/createuser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        id,
+        name,
+        email,
+        password,
+        phonenumber,
+        passwordhint
+      }),
+    }).then((res) => res.json()).then((data) => {
+      message.info(data.message)})
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
+    message.error("Submit Failed:", errorInfo);
   };
   return (
     <Card className="Card">
@@ -22,6 +46,13 @@ const SignUp = () => {
         layout="vertical"
         autoComplete="off"
       >
+        <Form.Item
+          label="Name"
+          name="name"
+          rules={[{ required: true, message: "Please input your Name!" }]}
+        >
+          <Input />
+        </Form.Item>
         <Form.Item
           label="Username"
           name="username"
@@ -72,3 +103,4 @@ const SignUp = () => {
   );
 };
 export default SignUp;
+
