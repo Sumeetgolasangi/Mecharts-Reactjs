@@ -8,10 +8,12 @@ function Header() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState<String>("");
   const [modal, setModal] = useState<boolean>(false);
-  const [users, setUsers] = useState<any>([]);
+  const [users, setUsers] = useState<any>();
   const handleChange = (value: String) => {
     setProfile(value);
-    if (value === "login") {
+    if (value === "logout") {
+      sessionStorage.removeItem("user")
+      sessionStorage.removeItem("token")
       navigate("/login");
     }
   };
@@ -24,16 +26,11 @@ function Header() {
   const handlehomebutton = () =>{
     navigate("/")
   }
-
   useEffect(()=>{
-    fetch(
-      `${`http://localhost:8080/`}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data.data)
-      })
+    const data:any=sessionStorage.getItem("user")
+    setUsers(JSON.parse(data))
   },[])
+  
   return (
     <div className="header-container">
       <Card className="card-container">
@@ -50,15 +47,15 @@ function Header() {
             </div>
             <div>
               <Select
-                defaultValue={users[0]?users[0].name:"user"}
+                defaultValue={users?users.name:"user"}
                 onChange={handleChange}
                 bordered={false}
                 className="profile"
                 options={[
-                  { value: "user", label: "Sumeet G" },
+                  { value: "user", label: (users?users.name:"user") },
                   { value: "my_profile", label: "My Profile" },
-                  { value: "login", label: "Login     ", disabled: false },
-                  { value: "logout", label: "Logout", disabled: true },
+                  { value: "login", label: "Login     ", disabled: true  },
+                  { value: "logout", label: "Logout", disabled: false },
                 ]}
               />
             </div>

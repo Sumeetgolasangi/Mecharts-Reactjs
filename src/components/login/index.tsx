@@ -1,8 +1,19 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import { Button, Checkbox, Form, Input, Card ,message} from "antd";
 import "./login.css";
-const Login = () => {
+import { useNavigate } from "react-router-dom";
 
+const Login = () => {
+  const navigate = useNavigate();
+  const [toggle,setToggle] = useState<boolean>(false)
+
+  useEffect(()=>{
+    const token : any= sessionStorage.getItem("token")
+    if(token){
+        navigate("/")
+    }
+  },[navigate, toggle])
+  
   const onFinish = (values: any) => {
     const email = values.email
     const password = values.password
@@ -18,9 +29,10 @@ const Login = () => {
         password
       }),
     }).then((res) => res.json()).then((data) => {
-      sessionStorage.setItem("data", data.token);
-      sessionStorage.setItem("user", data.data);
+      sessionStorage.setItem("token", data.token);
+      sessionStorage.setItem("user", JSON.stringify(data.data));
       message.info(data.message)})
+      setToggle(!toggle)
   };
 
   const onFinishFailed = (errorInfo: any) => {

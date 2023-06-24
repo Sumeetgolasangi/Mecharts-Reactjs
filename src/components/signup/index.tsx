@@ -13,7 +13,9 @@ const SignUp = () => {
     fetch("http://localhost:8080/createuser", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
         name,
