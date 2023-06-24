@@ -33,6 +33,7 @@ const Login = () => {
       sessionStorage.setItem("user", JSON.stringify(data.data));
       message.info(data.message)})
       setToggle(!toggle)
+      navigate("/")
   };
 
   const onFinishFailed = (errorInfo: any) => {
